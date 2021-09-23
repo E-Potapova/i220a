@@ -4,7 +4,8 @@
 #include <string.h>
 
 /** Sum pairs of ints read from the first argument; if first arg is
- *  "-", then read from stdin.  Write line containing each sum to file
+ *  "-", then read from stdin; if second arg is "-", then
+ *  write to stdout.  Write line containing each sum to file
  *  specified by second argument.  If second argument is not
  *  specified, then write sum to stdout.
  */
@@ -24,7 +25,7 @@ int
 main(int argc, const char *argv[])
 {
   if (argc != 2 && argc != 3) {
-    fprintf(stderr, "usage: %s IN_FILE|- [OUT_FILE]\n", argv[0]);
+    fprintf(stderr, "usage: %s IN_FILE|- [OUT_FILE]|-\n", argv[0]);
     exit(1);
   }
   const char *inName = argv[1];
@@ -33,8 +34,7 @@ main(int argc, const char *argv[])
     fprintf(stderr, "cannot read %s: %s\n", inName, strerror(errno));
     exit(1);
   }
-
-  FILE *out = argc < 3 ? stdout : fopen(argv[2], "w");
+  FILE *out = argc < 3 || strcmp(argv[2], "-") == 0 ? stdout : fopen(argv[2], "w");
   if (!out) {
     fprintf(stderr, "cannot write %s: %s\n", argv[2], strerror(errno));
     exit(1);
