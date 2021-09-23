@@ -117,32 +117,33 @@ codeToChar(const char *code) {
 static inline unsigned
 byteBitMask(unsigned bitIndex)
 {
-  //TODO
-  return 0;
+  return (1 << (BITS_PER_BYTE - 1 - bitIndex));
 }
 
 /** Given a power-of-2 powerOf2, return log2(powerOf2) */
 static inline unsigned
 getLog2PowerOf2(unsigned powerOf2)
 {
-  //TODO
-  return 0;
+  unsigned count = 0;
+  unsigned one = 1;
+  for (count; one != powerOf2; count++){
+    one = one << 1;
+  }
+  return count;
 }
 
 /** Given a bitOffset return the bitIndex part of the bitOffset. */
 static inline unsigned
 getBitIndex(unsigned bitOffset)
 {
-  //TODO
-  return 0;
+  return (bitOffset & (BITS_PER_BYTE - 1));
 }
 
 /** Given a bitOffset return the byte offset part of the bitOffset */
 static inline unsigned
 getOffset(unsigned bitOffset)
 {
-  //TODO
-  return 0;
+  return (bitOffset >> getLog2PowerOf2(BITS_PER_BYTE));
 }
 
 /** Return bit at offset bitOffset in array[]; i.e., return
@@ -151,15 +152,24 @@ getOffset(unsigned bitOffset)
 static inline int
 getBitAtOffset(const Byte array[], unsigned bitOffset)
 {
-  //TODO
-  return 0;
+  int bit = array[getOffset(bitOffset)];
+  bit = bit & byteBitMask(getBitIndex(bitOffset));
+  bit = bit >> (BITS_PER_BYTE - 1 - getBitIndex(bitOffset));
+  return bit;
 }
 
 /** Set bit selected by bitOffset in array to bit. */
 static inline void
 setBitAtOffset(Byte array[], unsigned bitOffset, unsigned bit)
 {
-  //TODO
+  unsigned mask = byteBitMask(getBitIndex(bitOffset));
+  unsigned bytIndex = getOffset(bitOffset);
+  if (bit == 1) {
+    array[byteIndex] = array[byteIndex] | mask;
+  }
+  else if (bit == 0) {
+    array[byteIndex] = array[byteIndex] & ~mask;
+  }
   return;
 }
 
@@ -169,8 +179,11 @@ setBitAtOffset(Byte array[], unsigned bitOffset, unsigned bit)
 static inline unsigned
 setBitsAtOffset(Byte array[], unsigned bitOffset, unsigned bit, unsigned count)
 {
-  //TODO
-  return 0;
+  for (count; count > 0; count--){
+    setBitAtOffset(array, bitOffset, bit);
+    bitOffset++;
+  }
+  return (bitOffset);
 }
 
 
@@ -187,8 +200,36 @@ setBitsAtOffset(Byte array[], unsigned bitOffset, unsigned bit, unsigned count)
 int
 textToMorse(const Byte text[], unsigned nText, Byte morse[])
 {
-  //TODO
-  return 0;
+  unsigned bitOffset = 0;
+  unsigned i = 0;
+  while (isalnum(text[i]) == 0){
+    i++;
+  }
+  for (i; i <= nText; i++){
+    const char* code = charToCode(text[i]);
+    if (code == NULL){
+      bitOffset = setBitsAtOffset(morse, bitOffset, 0, 4);
+      continue;
+    }
+    unsigned codeCharIndex = 0;
+    while (code[codeCharIndex] != '\0'){
+      char codeChar = code[codeCharIndex];
+      if (codeChar == '.') {
+	setBitAtOffset(morse, bitOffset, 1);
+	bitOffset++;
+	setBitAtOffset(morse, bitOffset, 0);
+	bitOffset++;
+      }
+      else if (codeChar == '-'){
+	bitOffset = setBitsAtOffset(morse, bitOffset, 1, 3);
+	setBitAtOffset(morse, bitOffset, 0);
+	bitOffset++;
+      }
+      codeCharIndex++;
+    }
+    bitOffset = setBitsAtOffset(morse, bitOffset, 0, 2); 
+  }
+  return getOffset(bitOffset);
 }
 
 /** Return count of run of identical bits starting at bitOffset
