@@ -2,5 +2,5 @@ Name:		Elizabeth Potapova
 B-Number:	B00846042
 Email:		epotapo1@binghamton.edu
 
-(Any errors or problems run into in the project will be specified here.)
+I spent over 2 hours debugging something that was working perfectly fine in morse.c because the output files that I was looking out were made by main.c. I was sure my return statement on morseToText() was accurate (the output file created by main.c is dependent on the return value), and I spend so long debugging a different piece of code... then I took a second glance at that and that was the answer the whole time .... I feel stupid :(
 
