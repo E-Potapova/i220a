@@ -137,7 +137,7 @@ int intersectionIntSet(void *intSetA, void *intSetB) {
 
   for (nAL = &headerA->dummy, nB = headerB->dummy.succ; (nAL->succ != NULL) && (nB != NULL);){
     if (nAL->succ->element < nB->element) {
-      nAL->succ = unlinkNodeAfter(nAL);
+      unlinkNodeAfter(nAL);
       removedElements++;
     }
     else if (nAL->succ->element == nB->element){
@@ -151,7 +151,8 @@ int intersectionIntSet(void *intSetA, void *intSetB) {
 
   if (nAL->succ != NULL){
     for (; nAL->succ != NULL;){
-      nAL = unlinkNodeAfter(nAL);
+      unlinkNodeAfter(nAL);
+      removedElements++;
     }
   }
   headerA->nElements -= removedElements;
