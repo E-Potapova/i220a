@@ -2,5 +2,4 @@ Name:		Elizabeth Potapova
 B-Number:	B00846042
 Email:		epotapo1@binghamton.edu
 
-Will update this at the end of the project with any known issues.
-
+No known issues, all tests + valgrind tests ran properly and without issue.
