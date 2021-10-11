@@ -520,9 +520,62 @@ START_TEST(emptyNonEmptyIntersection)
 }
 END_TEST
 
+START_TEST(nonEmptyEmptyIntersection)
+{
+  const int elements1[] = { 1, 3, 2, 3, 1 };
+  const int nElements1 = sizeof(elements1)/sizeof(elements1[0]);
+  intersectionTest(elements1, nElements1, NULL, 0, NULL, 0);
+}
+END_TEST
 
-//TODO: add more intersection tests.
+START_TEST(smallerLargerIntersection)
+{
+  const int elements1[] = { 1, 3, 2, 3, 1 };
+  const int nElements1 = sizeof(elements1)/sizeof(elements1[0]);
+  const int elements2[] = { 1, 54, 53, 33, 53 };
+  const int nElements2 = sizeof(elements2)/sizeof(elements2[0]);
+  const int intersectionElements[] = { 1 };
+  const int nIntersectionElements = sizeof(intersectionElements)/sizeof(intersectionElements[0]);
+  intersectionTest(elements1, nElements1, elements2, nElements2,
+            intersectionElements, nIntersectionElements);
+}
+END_TEST
 
+START_TEST(largerSmallerIntersection)
+{
+  const int elements1[] = { 33, 54, 53, 33, 53 };
+  const int nElements1 = sizeof(elements1)/sizeof(elements1[0]);
+  const int elements2[] = { 1, 3, 2, 3, 54 };
+  const int nElements2 = sizeof(elements2)/sizeof(elements2[0]);
+  const int intersectionElements[] = { 54 };
+  const int nIntersectionElements = sizeof(intersectionElements)/sizeof(intersectionElements[0]);
+  intersectionTest(elements1, nElements1, elements2, nElements2,
+            intersectionElements, nIntersectionElements);
+}
+END_TEST
+
+START_TEST(interleavedIntersection)
+{
+  const int elements1[] = { 1, 33, 54, 3, 45, 53 };
+  const int nElements1 = sizeof(elements1)/sizeof(elements1[0]);
+  const int elements2[] = { 1, 3, 33, 45, 2, 53, 53 };
+  const int nElements2 = sizeof(elements2)/sizeof(elements2[0]);
+  const int intersectionElements[] = { 1, 3, 33, 45, 53 };
+  const int nIntersectionElements = sizeof(intersectionElements)/sizeof(intersectionElements[0]);
+  intersectionTest(elements1, nElements1, elements2, nElements2,
+            intersectionElements, nIntersectionElements);
+}
+END_TEST
+
+START_TEST(noElementIntersection)
+{
+  const int elements1[] = { 1, 33, 54, 3, 45, 3 };
+  const int nElements1 = sizeof(elements1)/sizeof(elements1[0]);
+  const int elements2[] = { 2, 15, 43, 2, 53, 53 };
+  const int nElements2 = sizeof(elements2)/sizeof(elements2[0]);
+  intersectionTest(elements1, nElements1, elements2, nElements2, NULL, 0);
+}
+END_TEST
 
 static Suite *
 intersectionIntSetSuite(void)
@@ -531,8 +584,12 @@ intersectionIntSetSuite(void)
   TCase *intersectionTests = tcase_create("intersection");
   tcase_add_test(intersectionTests, emptyEmptyIntersection);
   tcase_add_test(intersectionTests, emptyNonEmptyIntersection);
-  //TODO: for each test added above tcase_add_test(intersectionTests, ...)
-
+  tcase_add_test(intersectionTests, nonEmptyEmptyIntersection);
+  tcase_add_test(intersectionTests, smallerLargerIntersection);
+  tcase_add_test(intersectionTests, largerSmallerIntersection);
+  tcase_add_test(intersectionTests, nonEmptyEmptyIntersection);
+  tcase_add_test(intersectionTests, interleavedIntersection);
+  tcase_add_test(intersectionTests, noElementIntersection);
   suite_add_tcase(suite, intersectionTests);
   return suite;
 }

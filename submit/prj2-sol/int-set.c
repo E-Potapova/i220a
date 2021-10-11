@@ -10,7 +10,7 @@
  */
 
 typedef struct NodeStruct {
-  int value;
+  int element;
   struct NodeStruct *succ;
 } Node;
 
@@ -36,7 +36,7 @@ int nElementsIntSet(void *intSet) {
 int isInIntSet(void *intSet, int element) {
   Header *header = (Header *)intSet;
   for (Node *n = header->dummy.succ; n != NULL; n = n->succ) {
-    if (n->value == element) return 1;
+    if (n->element == element) return 1;
   }
   return 0;
 }
@@ -47,7 +47,7 @@ int isInIntSet(void *intSet, int element) {
 static Node *linkNewNodeAfter(Node *n, int value){
   Node *new = malloc(sizeof(Node));
   if (!new) return NULL; //malloc failure
-  new->value = value;
+  new->element = value;
   new->succ = n->succ;
   n->succ = new;
   return new;
@@ -71,9 +71,9 @@ static Node *unlinkNodeAfter(Node *n) {
 int addIntSet(void *intSet, int element) {
   Header *header = (Header *)intSet;
   Node *n;
-  for (n = &header->dummy; (n->succ != NULL) && (n->succ->value < element); n = n->succ){}
-  assert(n->succ == NULL || n->succ->value >= element);
-  if ((n->succ == NULL && n->value != element) || n->succ->value != element){
+  for (n = &header->dummy; (n->succ != NULL) && (n->succ->element < element); n = n->succ){}
+  assert(n->succ == NULL || n->succ->element >= element);
+  if ((n->succ == NULL && n->element != element) || n->succ->element != element){
     if (!linkNewNodeAfter(n, element)) return -1;
     return ++header->nElements;
   }
@@ -96,16 +96,66 @@ int addMultipleIntSet(void *intSet, const int elements[], int nElements) {
  *  elements in the updated intSetA.  Returns < 0 on error.
  */
 int unionIntSet(void *intSetA, void *intSetB) {
-  //TODO
-  return 0;
+  Header *headerA = (Header *)intSetA;
+  Header *headerB = (Header *)intSetB;
+  Node *nAL;
+  Node *nB;
+  int addedElements = 0;
+  for (nAL = &headerA->dummy, nB = headerB->dummy.succ; (nAL->succ != NULL) && (nB != NULL);){
+    if (nAL->succ->element < nB->element){
+      nAL = nAL->succ;
+    }
+    else if (nAL->succ->element == nB->element){
+      nAL = nAL->succ;
+      nB = nB->succ;
+    }
+    else if (nAL->succ->element > nB->element){
+      nAL = linkNewNodeAfter(nAL, nB->element);
+      addedElements++;
+      nB = nB->succ;
+    }
+  }
+  if (nB != NULL){
+    for (; nB != NULL; nB = nB->succ){
+      nAL = linkNewNodeAfter(nAL, nB->element);
+      addedElements++;
+    }
+  }
+  headerA->nElements += addedElements;
+  return headerA->nElements;
 }
 
 /** Set intSetA to the intersection of intSetA and intSetB.  Return #
  *  of elements in the updated intSetA.  Returns < 0 on error.
  */
 int intersectionIntSet(void *intSetA, void *intSetB) {
-  //TODO
-  return 0;
+  Header *headerA = (Header *)intSetA;
+  Header *headerB = (Header *)intSetB;
+  Node *nAL;
+  Node *nB;
+  int removedElements = 0;
+
+  for (nAL = &headerA->dummy, nB = headerB->dummy.succ; (nAL->succ != NULL) && (nB != NULL);){
+    if (nAL->succ->element < nB->element) {
+      nAL->succ = unlinkNodeAfter(nAL);
+      removedElements++;
+    }
+    else if (nAL->succ->element == nB->element){
+      nAL = nAL->succ;
+      nB = nB->succ;
+    }
+    else if (nAL->succ->element > nB->element){
+      nB = nB->succ;
+    }
+  }
+
+  if (nAL->succ != NULL){
+    for (; nAL->succ != NULL;){
+      nAL = unlinkNodeAfter(nAL);
+    }
+  }
+  headerA->nElements -= removedElements;
+  return headerA->nElements;
 }
 
 /** Free all resources used by previously created intSet. */
@@ -130,7 +180,7 @@ const void *newIntSetIterator(const void *intSet) {
 /** Return current element for intSetIterator. */
 int intSetIteratorElement(const void *intSetIterator) {
   const Node *n = (Node *)intSetIterator;
-  return n->value;
+  return n->element;
 }
 
 /** Step intSetIterator and return stepped iterator.  Return
