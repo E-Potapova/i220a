@@ -1,0 +1,442 @@
+Script started on 2021-11-04 11:55:05-04:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="150" LINES="39"]
+epotapo1@remote05:~/i220a/submit/lab9$ bash
+epotapo1@remote05:~/i220a/submit/lab9$ cd quotes[K[K[K[K[K[Kexercises/quote-files/
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls
+'**'  '1$2'  "'12"  '1"2'  'a$b'  '\\ab'  'a"b'  "a'b"	 -l
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ eh[Kcho \\
+\
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ eho[K[Kcho \'
+'
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo \*
+*
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ \&HOME\"\\
+bash: &HOME"\: command not found
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ehco \&HOME\"\\
+bash: ehco: command not found
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ehco \&HOME\"\\[1P[1P[1@c[1@h
+&HOME"\
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo '\'
+\
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo \[K'\\'
+\\
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo '*&~[K[K$`[K~'
+*$~
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo '\''
+> '
+\
+
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo "\"\\"
+"\
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo "$HOME"
+/home/epotapo1
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo \
+> abc
+abc
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls *'$'*
+'1$2'  'a$b'
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls *"'"*
+"'12"  "a'b"
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls '\'*
+'\\ab'
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls '??'
+ls: cannot access '??': No such file or directory
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls ??
+-rw-r----- 1 epotapo1 epotapo1 0 Nov  2 19:40 '**'
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls ??-??-??
+ls: unrecognized option '--??'
+Try 'ls --help' for more information.
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls --?? ??
+'**'   -l
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ env
+SHELL=/bin/bash
+DERBY_HOME=/usr/lib/jvm/java-8-oracle/db
+JAVA_HOME=/usr/lib/jvm/java-8-oracle
+PWD=/home/epotapo1/i220a/submit/lab9/exercises/quote-files
+KRB5CCNAME=FILE:/tmp/krb5cc_15228_U6R6xjXjv7
+LOGNAME=epotapo1
+XDG_SESSION_TYPE=tty
+J2REDIR=/usr/lib/jvm/java-8-oracle/jre
+VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
+HOME=/home/epotapo1
+LANG=en_US.UTF-8
+_VIRTUALENVWRAPPER_API= mkvirtualenv rmvirtualenv lsvirtualenv showvirtualenv workon add2virtualenv cdsitepackages cdvirtualenv lssitepackages toggleglobalsitepackages cpvirtualenv setvirtualenvproject mkproject cdproject mktmpenv
+SSH_CONNECTION=149.125.102.219 63802 128.226.114.205 22
+CHAINENV_CONFIG_ROOT=/home/epotapo1/.config/chainenv
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+J2SDKDIR=/usr/lib/jvm/java-8-oracle
+USER=epotapo1
+SHLVL=3
+XDG_SESSION_ID=177282
+LD_LIBRARY_PATH=.:/home/epotapo1/cs220/lib
+XDG_RUNTIME_DIR=/run/user/15228
+CHAINENV_SHELL=bash
+SSH_CLIENT=149.125.102.219 63802 22
+PATH=/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/15228/bus
+SSH_TTY=/dev/pts/1
+CHAINENV_ROOT=/opt/chainenv
+OLDPWD=/home/epotapo1/i220a/submit/lab9
+_=/usr/bin/env
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo &HOME
+[1] 1720864
+
+bash: HOME: command not found
+[1]+  Done                    echo
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo &PATH
+[1] 1720895
+
+bash: PATH: command not found
+[1]+  Done                    echo
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo $HOME
+/home/epotapo1
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo $PATH
+/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo $xxx
+
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ xxx=123
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ exho[K[K[Kcho $xxx
+123
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ env ? [K[K| grep xxx
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ export xxx
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ env | grep xxx
+xxx=123
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ expot [K[Krt x=[Kx=46[K56[K[K[K[Kx=456
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ export xxx=456nv | grep xxx
+xxx=456
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ p=$PATH
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo $p
+/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ env | grep[K[K[K[K[K[K[K[K[K[Kexport $PATH=''
+bash: export: `/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin=': not a valid identifier
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ $PATH=''
+bash: /home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin=: No such file or directory
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ $PATH=''export $PATH=''[K[K
+bash: export: `/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin=': not a valid identifier
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ $PATH=[K[K[K[K[K[KA[KPATH=
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ e [Kcho %[K$PATH
+
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls
+bash: ls: No such file or directory
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ path[K[K[K[KPATH=p
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls
+bash: ls: command not found
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ exho [K[K[K[K[Kecho $p
+/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/home/epotapo1/cs220/bin:/home/epotapo1/.config/chainenv/shims:/opt/chainenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ echo $PATH
+p
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ PATH=$p
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls
+'**'  '1$2'  "'12"  '1"2'  'a$b'  '\\ab'  'a"b'  "a'b"	 -l
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ find -L ~/cs220 -name '*.c' 
+/home/epotapo1/cs220/exercises/questions/src/final/as-fns.c
+/home/epotapo1/cs220/exercises/questions/src/midterm/asm-to-c.c
+/home/epotapo1/cs220/exercises/questions/src/x86/fns-asm.c
+/home/epotapo1/cs220/hw/hw2-sol/sorted-list/main.c
+/home/epotapo1/cs220/hw/hw2-sol/sorted-list/sorted-list.c
+/home/epotapo1/cs220/labs/gdb/exercises/1-hello-args/hello.c
+/home/epotapo1/cs220/labs/gdb/exercises/2-hello-upcase-args/hello.c
+/home/epotapo1/cs220/labs/lab1/exercises/1-hello/hello.c
+/home/epotapo1/cs220/labs/lab1/exercises/3-multifile/main.c
+/home/epotapo1/cs220/labs/lab1/exercises/3-multifile/quadr.c
+/home/epotapo1/cs220/labs/lab1/exercises/4-from-scratch/key-value.c
+/home/epotapo1/cs220/labs/lab1/exercises/4-from-scratch/main.c
+/home/epotapo1/cs220/labs/lab1/exercises/4-from-scratch/process-file.c
+/home/epotapo1/cs220/labs/lab1/exercises/5-auto-dependencies/main.c
+/home/epotapo1/cs220/labs/lab1/exercises/5-auto-dependencies/quadr.c
+/home/epotapo1/cs220/labs/lab2/exercises/1-hello-args/hello.c
+/home/epotapo1/cs220/labs/lab2/exercises/2-hello-upcase-args/hello.c
+/home/epotapo1/cs220/labs/lab3/exercises/4/sum-ints.c
+/home/epotapo1/cs220/labs/lab3/exercises/c-stdin-stdout/sum-ints.c
+/home/epotapo1/cs220/labs/lab4/exercises/1/pointers.c
+/home/epotapo1/cs220/labs/lab4/exercises/2/in-pointers.c
+/home/epotapo1/cs220/labs/lab4/exercises/3/bad-types.c
+/home/epotapo1/cs220/labs/lab4/exercises/4/cast-types.c
+/home/epotapo1/cs220/labs/lab4/exercises/5/void-pointers.c
+/home/epotapo1/cs220/labs/lab4/exercises/6/in-voids.c
+/home/epotapo1/cs220/labs/lab4/exercises/7/bug-program.c
+/home/epotapo1/cs220/labs/lab4/exercises/bad-types/bad-types.c
+/home/epotapo1/cs220/labs/lab4/exercises/bug-program/bug-program.c
+/home/epotapo1/cs220/labs/lab4/exercises/cast-types/cast-types.c
+/home/epotapo1/cs220/labs/lab4/exercises/in-pointers/in-pointers.c
+/home/epotapo1/cs220/labs/lab4/exercises/in-voids/in-voids.c
+/home/epotapo1/cs220/labs/lab4/exercises/pointers/pointers.c
+/home/epotapo1/cs220/labs/lab4/exercises/void-pointers/void-pointers.c
+/home/epotapo1/cs220/labs/make/exercises/1-hello/hello.c
+/home/epotapo1/cs220/labs/make/exercises/3-multifile/main.c
+/home/epotapo1/cs220/labs/make/exercises/3-multifile/quadr.c
+/home/epotapo1/cs220/labs/make/exercises/4-from-scratch/key-value.c
+/home/epotapo1/cs220/labs/make/exercises/4-from-scratch/main.c
+/home/epotapo1/cs220/labs/make/exercises/4-from-scratch/process-file.c
+/home/epotapo1/cs220/labs/make/exercises/5-auto-dependencies/main.c
+/home/epotapo1/cs220/labs/make/exercises/5-auto-dependencies/quadr.c
+/home/epotapo1/cs220/labs/pointers/exercises/1/pointers.c
+/home/epotapo1/cs220/labs/pointers/exercises/2/in-pointers.c
+/home/epotapo1/cs220/labs/pointers/exercises/3/bad-types.c
+/home/epotapo1/cs220/labs/pointers/exercises/4/cast-types.c
+/home/epotapo1/cs220/labs/pointers/exercises/5/void-pointers.c
+/home/epotapo1/cs220/labs/pointers/exercises/6/in-voids.c
+/home/epotapo1/cs220/labs/pointers/exercises/7/bug-program.c
+/home/epotapo1/cs220/labs/pointers/exercises/bad-types/bad-types.c
+/home/epotapo1/cs220/labs/pointers/exercises/bug-program/bug-program.c
+/home/epotapo1/cs220/labs/pointers/exercises/cast-types/cast-types.c
+/home/epotapo1/cs220/labs/pointers/exercises/in-pointers/in-pointers.c
+/home/epotapo1/cs220/labs/pointers/exercises/in-voids/in-voids.c
+/home/epotapo1/cs220/labs/pointers/exercises/pointers/pointers.c
+/home/epotapo1/cs220/labs/pointers/exercises/void-pointers/void-pointers.c
+/home/epotapo1/cs220/labs/unix-cli/exercises/4/sum-ints.c
+/home/epotapo1/cs220/labs/unix-cli/exercises/c-stdin-stdout/sum-ints.c
+/home/epotapo1/cs220/labs/assembly-language/exercises/2/identify.c
+/home/epotapo1/cs220/labs/assembly-language/exercises/hello.c
+/home/epotapo1/cs220/labs/assembly-language/exercises/identify/identify.c
+/home/epotapo1/cs220/labs/lab5/exercises/2/identify.c
+/home/epotapo1/cs220/labs/lab5/exercises/hello.c
+/home/epotapo1/cs220/labs/lab5/exercises/identify/identify.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/1/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/2/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/3/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/another-one/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/full-example/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/decoding-binary/exercises/simple/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/1/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/2/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/3/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/another-one/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/full-example/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab6/exercises/simple/feed-cookie-monster.c
+/home/epotapo1/cs220/labs/lab7/exercises/1/log10.c
+/home/epotapo1/cs220/labs/lab7/exercises/2/def1.c
+/home/epotapo1/cs220/labs/lab7/exercises/2/def2.c
+/home/epotapo1/cs220/labs/lab7/exercises/2/main.c
+/home/epotapo1/cs220/labs/lab7/exercises/3/f.c
+/home/epotapo1/cs220/labs/lab7/exercises/3/main.c
+/home/epotapo1/cs220/labs/lab7/exercises/4/log10.c
+/home/epotapo1/cs220/labs/lab7/exercises/5/addvec.c
+/home/epotapo1/cs220/labs/lab7/exercises/5/multvec.c
+/home/epotapo1/cs220/labs/lab7/exercises/5/testvec.c
+/home/epotapo1/cs220/labs/lab7/exercises/7/circ.c
+/home/epotapo1/cs220/labs/lab7/exercises/7/rect.c
+/home/epotapo1/cs220/labs/lab7/exercises/7/testgeom.c
+/home/epotapo1/cs220/labs/lab7/exercises/libgeom/circ.c
+/home/epotapo1/cs220/labs/lab7/exercises/libgeom/rect.c
+/home/epotapo1/cs220/labs/lab7/exercises/libgeom/testgeom.c
+/home/epotapo1/cs220/labs/lab7/exercises/libvec/addvec.c
+/home/epotapo1/cs220/labs/lab7/exercises/libvec/multvec.c
+/home/epotapo1/cs220/labs/lab7/exercises/libvec/testvec.c
+/home/epotapo1/cs220/labs/lab7/exercises/log10/log10.c
+/home/epotapo1/cs220/labs/lab7/exercises/multiple-defs/f.c
+/home/epotapo1/cs220/labs/lab7/exercises/multiple-defs/main.c
+/home/epotapo1/cs220/labs/lab7/exercises/multiple-symbols/def1.c
+/home/epotapo1/cs220/labs/lab7/exercises/multiple-symbols/def2.c
+/home/epotapo1/cs220/labs/lab7/exercises/multiple-symbols/main.c
+/home/epotapo1/cs220/labs/lab7/exercises/static-dynamic/log10.c
+/home/epotapo1/cs220/labs/linking/exercises/1/log10.c
+/home/epotapo1/cs220/labs/linking/exercises/2/def1.c
+/home/epotapo1/cs220/labs/linking/exercises/2/def2.c
+/home/epotapo1/cs220/labs/linking/exercises/2/main.c
+/home/epotapo1/cs220/labs/linking/exercises/3/f.c
+/home/epotapo1/cs220/labs/linking/exercises/3/main.c
+/home/epotapo1/cs220/labs/linking/exercises/4/log10.c
+/home/epotapo1/cs220/labs/linking/exercises/5/addvec.c
+/home/epotapo1/cs220/labs/linking/exercises/5/multvec.c
+/home/epotapo1/cs220/labs/linking/exercises/5/testvec.c
+/home/epotapo1/cs220/labs/linking/exercises/7/circ.c
+/home/epotapo1/cs220/labs/linking/exercises/7/rect.c
+/home/epotapo1/cs220/labs/linking/exercises/7/testgeom.c
+/home/epotapo1/cs220/labs/linking/exercises/libgeom/circ.c
+/home/epotapo1/cs220/labs/linking/exercises/libgeom/rect.c
+/home/epotapo1/cs220/labs/linking/exercises/libgeom/testgeom.c
+/home/epotapo1/cs220/labs/linking/exercises/libvec/addvec.c
+/home/epotapo1/cs220/labs/linking/exercises/libvec/multvec.c
+/home/epotapo1/cs220/labs/linking/exercises/libvec/testvec.c
+/home/epotapo1/cs220/labs/linking/exercises/log10/log10.c
+/home/epotapo1/cs220/labs/linking/exercises/multiple-defs/f.c
+/home/epotapo1/cs220/labs/linking/exercises/multiple-defs/main.c
+/home/epotapo1/cs220/labs/linking/exercises/multiple-symbols/def1.c
+/home/epotapo1/cs220/labs/linking/exercises/multiple-symbols/def2.c
+/home/epotapo1/cs220/labs/linking/exercises/multiple-symbols/main.c
+/home/epotapo1/cs220/labs/linking/exercises/static-dynamic/log10.c
+/home/epotapo1/cs220/labs/lab8/exercises/1/rotate.c
+/home/epotapo1/cs220/labs/lab8/exercises/2/main.c
+/home/epotapo1/cs220/labs/lab8/exercises/3/main.c
+/home/epotapo1/cs220/labs/lab8/exercises/4/main.c
+/home/epotapo1/cs220/labs/lab8/exercises/5/rip.c
+/home/epotapo1/cs220/labs/lab8/exercises/6/rsp.c
+/home/epotapo1/cs220/labs/lab8/exercises/cpuid1/main.c
+/home/epotapo1/cs220/labs/lab8/exercises/cpuid2/main.c
+/home/epotapo1/cs220/labs/lab8/exercises/parity/main.c
+/home/epotapo1/cs220/labs/lab8/exercises/rip/rip.c
+/home/epotapo1/cs220/labs/lab8/exercises/rotate/rotate.c
+/home/epotapo1/cs220/labs/lab8/exercises/rsp/rsp.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/1/rotate.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/2/main.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/3/main.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/4/main.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/5/rip.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/6/rsp.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/cpuid1/main.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/cpuid2/main.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/parity/main.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/rip/rip.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/rotate/rotate.c
+/home/epotapo1/cs220/labs/mixing-c-with-assembly/exercises/rsp/rsp.c
+/home/epotapo1/cs220/projects/prj1/prj1-sol/file-utils.c
+/home/epotapo1/cs220/projects/prj1/prj1-sol/main.c
+/home/epotapo1/cs220/projects/prj1/prj1-sol/morse.c
+/home/epotapo1/cs220/projects/prj1/prj1-sol/tests.c
+/home/epotapo1/cs220/projects/prj1-sol/file-utils.c
+/home/epotapo1/cs220/projects/prj1-sol/main.c
+/home/epotapo1/cs220/projects/prj1-sol/morse.c
+/home/epotapo1/cs220/projects/prj1-sol/tests.c
+/home/epotapo1/cs220/projects/prj2/prj2-sol/int-set-strings.c
+/home/epotapo1/cs220/projects/prj2/prj2-sol/main.c
+/home/epotapo1/cs220/projects/prj2/prj2-sol/tests.c
+/home/epotapo1/cs220/projects/prj2-sol/int-set-strings.c
+/home/epotapo1/cs220/projects/prj2-sol/int-set.c
+/home/epotapo1/cs220/projects/prj2-sol/main.c
+/home/epotapo1/cs220/projects/prj2-sol/tests.c
+/home/epotapo1/cs220/slides/intro/code/hello.c
+/home/epotapo1/cs220/slides/c-intro/code/arith.c
+/home/epotapo1/cs220/slides/c-intro/code/bases.c
+/home/epotapo1/cs220/slides/c-intro/code/out-bits.c
+/home/epotapo1/cs220/slides/c-intro/code/sum-args.c
+/home/epotapo1/cs220/slides/c-intro/code/sum.c
+/home/epotapo1/cs220/slides/c-intro/code/sum0.c
+/home/epotapo1/cs220/slides/c-intro/code/wc.c
+/home/epotapo1/cs220/slides/c-intro/code/count-1s-1.c
+/home/epotapo1/cs220/slides/c-intro/code/count-1s-2.c
+/home/epotapo1/cs220/slides/c-intro/code/kilo-powers.c
+/home/epotapo1/cs220/slides/c-intro/code/str-to-int.c
+/home/epotapo1/cs220/slides/c-intro/code/endian.c
+/home/epotapo1/cs220/slides/c-intro/code/dangling-pointer.c
+/home/epotapo1/cs220/slides/c-intro/code/scopes-example.c
+/home/epotapo1/cs220/slides/c-intro/code/sorted-list/main.c
+/home/epotapo1/cs220/slides/c-intro/code/sorted-list/sorted-list.c
+/home/epotapo1/cs220/slides/c-intro/code/vector-scalar-mult.c
+/home/epotapo1/cs220/slides/x86/code/abs-diff.c
+/home/epotapo1/cs220/slides/x86/code/acc-fact.c
+/home/epotapo1/cs220/slides/x86/code/arith.c
+/home/epotapo1/cs220/slides/x86/code/array-access.c
+/home/epotapo1/cs220/slides/x86/code/cmp-sets.c
+/home/epotapo1/cs220/slides/x86/code/conditional-move.c
+/home/epotapo1/cs220/slides/x86/code/div-mod.c
+/home/epotapo1/cs220/slides/x86/code/dynamic-array.c
+/home/epotapo1/cs220/slides/x86/code/fact-do-while.c
+/home/epotapo1/cs220/slides/x86/code/fact-while.c
+/home/epotapo1/cs220/slides/x86/code/find.c
+/home/epotapo1/cs220/slides/x86/code/indirect-goto.c
+/home/epotapo1/cs220/slides/x86/code/move.c
+/home/epotapo1/cs220/slides/x86/code/mstore/main.c
+/home/epotapo1/cs220/slides/x86/code/mstore/mstore.c
+/home/epotapo1/cs220/slides/x86/code/point3.c
+/home/epotapo1/cs220/slides/x86/code/read-point.c
+/home/epotapo1/cs220/slides/x86/code/rec-fact.c
+/home/epotapo1/cs220/slides/x86/code/scale.c
+/home/epotapo1/cs220/slides/x86/code/stack-frame.c
+/home/epotapo1/cs220/slides/x86/code/structs.c
+/home/epotapo1/cs220/slides/x86/code/switch.c
+/home/epotapo1/cs220/slides/x86/code/vframe.c
+/home/epotapo1/cs220/slides/x86/code/base-index.c
+/home/epotapo1/cs220/slides/x86/code/displ-base-index.c
+/home/epotapo1/cs220/slides/x86/code/displ-base.c
+/home/epotapo1/cs220/slides/x86/code/imm.c
+/home/epotapo1/cs220/slides/x86/code/indir.c
+/home/epotapo1/cs220/slides/x86/code/sub.c
+/home/epotapo1/cs220/slides/x86/code/sum.c
+/home/epotapo1/cs220/slides/x86/code/base-scaled-index.c
+/home/epotapo1/cs220/slides/x86/code/displ-base-scaled-index.c
+/home/epotapo1/cs220/slides/x86/code/area.c
+/home/epotapo1/cs220/slides/x86/code/geom.c
+/home/epotapo1/cs220/slides/x86/code/shift.c
+/home/epotapo1/cs220/slides/x86/code/sum-dist-origin.c
+/home/epotapo1/cs220/slides/x86/code/abs-diff-s.c
+/home/epotapo1/cs220/slides/x86/code/sum-dist-origin-s.c
+/home/epotapo1/cs220/slides/more-c/code/enum-strings.c
+/home/epotapo1/cs220/slides/more-c/code/float-decode.c
+/home/epotapo1/cs220/slides/more-c/code/oo-shapes/circle.c
+/home/epotapo1/cs220/slides/more-c/code/oo-shapes/main.c
+/home/epotapo1/cs220/slides/more-c/code/oo-shapes/rect.c
+/home/epotapo1/cs220/slides/more-c/code/oo-shapes/shape.c
+/home/epotapo1/cs220/slides/more-c/code/stack/main.c
+/home/epotapo1/cs220/slides/more-c/code/stack/stack.c
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ find -L ~/cs220 -name '*.c' | wc -l
+232
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ find -L ~/cs220 -name '*.c' | wc -l[1P[C[1P[1P
+0
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ find / -name '*.c' 2>/dev/null >c-files.lst &
+[1] 1726828
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ ls
+'**'  '1$2'  "'12"  '1"2'  'a$b'  '\\ab'  'a"b'  "a'b"	 c-files.lst   -l
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ jobs
+[1]+  Running                 find / -name '*.c' 2> /dev/null > c-files.lst &
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ kill %1
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ jobs
+[1]+  Terminated              find / -name '*.c' 2> /dev/null > c-files.lst
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ jobs
+epotapo1@remote05:~/i220a/submit/lab9/exercises/quote-files$ cd ~
+epotapo1@remote05:~$ pwd
+/home/epotapo1
+epotapo1@remote05:~$ xx=123
+epotapo1@remote05:~$ pwd; echo $xx; (xx=abc; cd /; pwd; echo $xx); pwd; echo $xx
+/home/epotapo1
+123
+/
+abc
+/home/epotapo1
+123
+epotapo1@remote05:~$ (cd ~/cs220; git log -1)
+[?1h=[33mcommit 4ca413434ed8d8fb17a9b0757221347554195042[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+Author: zerksis umrigar <umrigar@binghamton.edu>[m
+Date:   Wed Nov 3 21:09:45 2021 -0400[m
+[m
+    announce exercises[m
+[K[?1l>epotapo1@remote05:~$ grep -i 'MAIN(' `find ~/cs220/projects -name '*.[ch]'` wc -l[1@|[1@ 
+8
+epotapo1@remote05:~$ grep -i 'MAIN(' `find ~/cs220/projects -name '*.[ch]'`
+/home/epotapo1/cs220/projects/prj1/prj1-sol/main.c:main(int argc, const char *argv[])
+/home/epotapo1/cs220/projects/prj1/prj1-sol/tests.c:main(void)
+/home/epotapo1/cs220/projects/prj1-sol/main.c:main(int argc, const char *argv[])
+/home/epotapo1/cs220/projects/prj1-sol/tests.c:main(void)
+/home/epotapo1/cs220/projects/prj2/prj2-sol/main.c:main(int argc, const char *argv[])
+/home/epotapo1/cs220/projects/prj2/prj2-sol/tests.c:main(void)
+/home/epotapo1/cs220/projects/prj2-sol/main.c:main(int argc, const char *argv[])
+/home/epotapo1/cs220/projects/prj2-sol/tests.c:main(void)
+epotapo1@remote05:~$ echo $?
+0
+epotapo1@remote05:~$ false
+epotapo1@remote05:~$ falseecho $?
+1
+epotapo1@remote05:~$ true
+epotapo1@remote05:~$ trueecho $?
+0
+epotapo1@remote05:~$ false; echo 123
+123
+epotapo1@remote05:~$ true; echo 123
+123
+epotapo1@remote05:~$ false && echo 123
+epotapo1@remote05:~$ true && echo 123
+123
+epotapo1@remote05:~$ false || echo 123
+123
+epotapo1@remote05:~$ true || echo 123
+epotapo1@remote05:~$ sleep 5 [K; echo 23[K[K123 &
+[1] 1732268
+123
+epotapo1@remote05:~$ jobs
+[1]+  Done                    echo 123
+epotapo1@remote05:~$ sleep 5 &; echo 123
+bash: syntax error near unexpected token `;'
+epotapo1@remote05:~$ (sleep 5; echo 123) &
+[1] 1732653
+epotapo1@remote05:~$ 123
+
+[1]+  Done                    ( sleep 5; echo 123 )
+epotapo1@remote05:~$ cd i220a/submit/lab9/
+epotapo1@remote05:~/i220a/submit/lab9$ [Kepotapo1@remote05:~/i220a/submit/lab9$ [Kepotapo1@remote05:~/i220a/submit/lab9$ [Kepotapo1@remote05:~/i220a/submit/lab9$ exit
+epotapo1@remote05:~/i220a/submit/lab9$ ls
+exercises  lab9.LOG
+epotapo1@remote05:~/i220a/submit/lab9$ exit
+
+Script done on 2021-11-04 12:29:21-04:00 [COMMAND_EXIT_CODE="0"]
