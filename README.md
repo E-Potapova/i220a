@@ -1,2 +1,2 @@
 # i220a
-Lab repo for CS 220 - A52
+Repo for CS 220 and lab section A52
