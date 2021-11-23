@@ -1,0 +1,59 @@
+# in prj4-sol directory
+
+# generate random functions
+$ ~/cs220/projects/prj4/extras/gen-fns.rb 20 testFn >fns.c
+
+# compile generated fns
+$ make -f ~/cs220/projects/prj4/extras/Makefile
+cc -g -Wall -std=c18  -fPIC -shared fns.c -o fns
+
+# addresses could differ
+# LD_LIBRARY_PATH should not be necessary if your account is set up
+$ LD_LIBRARY_PATH=".:$HOME/cs220/lib" ./fn-trace  fns testFn
+0x7f0a309670f9: nInCalls:       8; nOutCalls:       8; length:     385
+0x7f0a3096727a: nInCalls:       5; nOutCalls:       7; length:     311
+0x7f0a309673b1: nInCalls:       7; nOutCalls:       6; length:     276
+0x7f0a309674c5: nInCalls:       5; nOutCalls:       2; length:     119
+0x7f0a3096753c: nInCalls:       7; nOutCalls:       9; length:     365
+0x7f0a309676a9: nInCalls:       4; nOutCalls:       9; length:     395
+0x7f0a30967834: nInCalls:       4; nOutCalls:       9; length:     409
+0x7f0a309679cd: nInCalls:       4; nOutCalls:      10; length:     438
+0x7f0a30967b83: nInCalls:       4; nOutCalls:       6; length:     330
+0x7f0a30967ccd: nInCalls:       6; nOutCalls:       4; length:     181
+0x7f0a30967d82: nInCalls:       7; nOutCalls:       4; length:     210
+0x7f0a30967e54: nInCalls:       7; nOutCalls:      11; length:     442
+0x7f0a3096800e: nInCalls:       6; nOutCalls:       6; length:     257
+0x7f0a3096810f: nInCalls:       7; nOutCalls:       2; length:     112
+0x7f0a3096817f: nInCalls:      12; nOutCalls:       3; length:     137
+0x7f0a30968208: nInCalls:       5; nOutCalls:       8; length:     383
+0x7f0a30968387: nInCalls:       9; nOutCalls:       6; length:     257
+0x7f0a30968488: nInCalls:       7; nOutCalls:       3; length:     193
+0x7f0a30968549: nInCalls:       6; nOutCalls:       9; length:     382
+0x7f0a309686c7: nInCalls:       8; nOutCalls:       5; length:     213
+0x7f0a3096879c: nInCalls:       1; nOutCalls:       1; length:      20
+
+# -r uses relative addresses instead
+# LD_LIBRARY_PATH should not be necessary if your account is set up
+$ LD_LIBRARY_PATH=".:$HOME/cs220/lib" ./fn-trace -r fns testFn
+       0: nInCalls:       8; nOutCalls:       8; length:     385
+     385: nInCalls:       5; nOutCalls:       7; length:     311
+     696: nInCalls:       7; nOutCalls:       6; length:     276
+     972: nInCalls:       5; nOutCalls:       2; length:     119
+    1091: nInCalls:       7; nOutCalls:       9; length:     365
+    1456: nInCalls:       4; nOutCalls:       9; length:     395
+    1851: nInCalls:       4; nOutCalls:       9; length:     409
+    2260: nInCalls:       4; nOutCalls:      10; length:     438
+    2698: nInCalls:       4; nOutCalls:       6; length:     330
+    3028: nInCalls:       6; nOutCalls:       4; length:     181
+    3209: nInCalls:       7; nOutCalls:       4; length:     210
+    3419: nInCalls:       7; nOutCalls:      11; length:     442
+    3861: nInCalls:       6; nOutCalls:       6; length:     257
+    4118: nInCalls:       7; nOutCalls:       2; length:     112
+    4230: nInCalls:      12; nOutCalls:       3; length:     137
+    4367: nInCalls:       5; nOutCalls:       8; length:     383
+    4750: nInCalls:       9; nOutCalls:       6; length:     257
+    5007: nInCalls:       7; nOutCalls:       3; length:     193
+    5200: nInCalls:       6; nOutCalls:       9; length:     382
+    5582: nInCalls:       8; nOutCalls:       5; length:     213
+    5795: nInCalls:       1; nOutCalls:       1; length:      20
+$
