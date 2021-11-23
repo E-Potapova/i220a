@@ -9,10 +9,58 @@
 #include <stdlib.h>
 
 enum { INIT_SIZE = 2 };
+// abstract declarations
+static inline bool is_call(unsigned);
+static inline bool is_ret(unsigned);
 
 struct FnsDataImpl {
-  //TODO
+  int index;
+  int nAlloc;
+  FnInfo *elements;
 };
+
+
+/** adds element to dynamic array
+ */
+static void add_element(FnInfo element, FnsData *array) {
+  unsigned INC = 4;
+  if (array->index >= array->nAlloc) {
+    array->elements = reallocChk(array->elements, (array->nAlloc += INC) * sizeof(FnInfo));
+  }
+  
+  array->elements[array->index++] = element;
+}
+
+/** compare function used for qsort
+ */
+static int cmp_info(const void *p1, const void *p2) {
+  return ((FnInfo *)p1)->address - ((FnInfo *)p2)->address;
+}
+
+void create_info(void *root, FnsData *array) {
+  unsigned length = 0;
+  unsigned nOutCalls = 0;
+  FnInfo info = { .address = root, .length = 0, .nInCalls = 1, .nOutCalls = 0 };
+  
+  unsigned op_code;
+  unsigned op_length;
+  Lde *lde = new_lde();
+  unsigned char *instr = (unsigned char *)root;
+
+  do {
+    op_code = *instr;
+    op_length = get_op_length(lde, instr);
+    printf("opCode: %x, opLength: %d\n", op_code, op_length);
+    if (is_call(op_code)) nOutCalls++;
+    instr += op_length;
+    length += op_length;
+  } while (!is_ret(op_code));
+
+  free_lde(lde);
+
+  info.length = length; info.nOutCalls = nOutCalls;
+  printf("root: %p, length: %d, inCalls: %d, outCalls %d\n", info.address, info.length, info.nInCalls, info.nOutCalls); 
+}
 
 /** Return pointer to opaque data structure containing collection of
  *  FnInfo's for functions which are callable directly or indirectly
@@ -21,7 +69,12 @@ struct FnsDataImpl {
 const FnsData *
 new_fns_data(void *rootFn)
 {
-  //TODO
+  FnsData array = { .index = 0, .nAlloc = 0, .elements = NULL};
+  create_info(rootFn, &array);
+  //qsort(array.elements, array.index, sizeof(FnInfo), cmp_info);
+  free(array.elements);
+  exit(0);
+
   return NULL;
 }
 
@@ -32,6 +85,7 @@ new_fns_data(void *rootFn)
 void
 free_fns_data(FnsData *fnsData)
 {
+  free(fnsData->elements);
   //TODO
 }
 
@@ -74,4 +128,3 @@ static inline bool is_ret(unsigned op) {
     op == RET_FAR_OP || op == RET_FAR_WITH_POP_OP;
 }
 
-//TODO: add auxiliary functions
