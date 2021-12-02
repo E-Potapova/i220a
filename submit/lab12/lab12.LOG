@@ -1,0 +1,216 @@
+Script started on 2021-12-02 12:45:13-05:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="190" LINES="49"]
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12$ oops forgot to start cri[K[K[Kscript
+bash: oops: command not found
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12$ sorry :(
+bash: syntax error near unexpected token `('
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12$ cat block.s
+cat: block.s: No such file or directory
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12$ cd exercises/
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ cd exercises/[2Pat block.s
+		#dos starts all .com programs at this offset
+		.org	0x100
+
+	        .code16
+
+#Define constants
+DOS_INT 	=       0x21
+COUNT  		=       25
+QUIT   		= 	'q'
+DELAY_LO 	=	0x0
+DELAY_HI 	=	0x1
+
+#Entered at program startup.
+		jmp	main
+
+
+#data area	
+inChar:		.byte	0
+
+main:
+main1:	
+		call    getchar         #read input char into inChar
+		mov	inChar, %al	#al set to char read
+		cmp	$QUIT, %al	#is it a QUIT character?
+		jz	main3		#quit if got QUIT character
+		mov     $COUNT, %cx     #set output counter
+main2:  
+	        call    putchar         #output inChar to console
+		call    delay           #delay for time proportional to DELAY
+                dec	%cx             #decrement loop counter
+		jnz     main2           #loop if output counter nonzero
+		jmp     main1           #back to read next char
+main3:		call	exit
+
+#Read next char from stdin into inChar.  Quit if ^C
+getchar:
+		push	%ax
+		mov     $0x08,%ah       #specify fn: read without echo into al
+		int     $DOS_INT        #read stdin into %al
+		mov     %al,inChar      #mov char read to inChar
+		pop	%ax
+		ret
+
+#Write inChar to console	
+putchar:
+		push	%ax
+		movb    $02,%ah         #specify fn: output dl to stdout
+		movb    inChar,%dl      #char to output
+		int     $DOS_INT        #output inChar
+		pop	%ax
+		ret
+
+exit:
+		mov	$0x4c,%ah      	#specify fn: program exit
+		mov	$0x0,%al        #setup exit status
+		int	$DOS_INT        #exit program
+	
+	
+
+#spin loop for delay time proportional to value in DELAY_HI_DELAY_LO
+delay:		push	%ax
+		push	%bx
+		push	%cx
+		mov	$DELAY_HI, %bx
+delay1:		mov     $DELAY_LO, %cx
+delay2:		mov     $0x0f0a0, %ax
+	        imul    %cl
+	        dec     %cx
+	        jnz     delay2
+	        dec     %bx
+	        jnz	delay1
+	        pop	%cx
+		pop	%bx
+		pop	%ax
+		ret
+
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ cat poll.s
+		#dos starts all .com programs at this offset
+		.org	0x100
+
+	        .code16
+
+#Define constants
+DOS_INT 	=       0x21
+COUNT  		=        50
+QUIT   		= 	'q'
+DELAY_LO 	=	0x0
+DELAY_HI 	=	0x2
+
+#Entered at program startup.
+		jmp	main
+
+
+#data area	
+inChar:		.byte	0
+hasKey:		.byte   1
+
+main:
+main1:	
+		call    getchar         #read input char into inChar
+		mov	inChar, %al	#al set to char read
+		cmp	$QUIT, %al	#is it a QUIT character?
+		jz	main3		#quit if got QUIT character
+		mov     $COUNT, %cx     #set output counter
+main2:
+	        call    checkKey	#check if key has been pressed
+		mov	hasKey, %al	#put checkKey result into al
+		test	%al, %al	#non-zero if keyboard has char
+	        jz	main4           #no key press
+	        xor	%al, %al
+		mov	%al, hasKey     #reset hasKey flag
+		call	getchar         #read new input key
+		mov	inChar, %al
+		cmp	$QUIT, %al
+		jz	main3
+main4:	
+	        call    putchar         #output inChar to console
+		call    delay           #delay for time proportional to DELAY
+                dec	%cx             #decrement loop counter
+		jnz     main2           #loop if output counter nonzero
+		jmp     main1           #back to read next char
+main3:		call	exit
+
+#Set hasKey to non-zero if key has been pressed
+checkKey:
+		push    %ax
+		movb    $0xb, %ah       #specify fn: get stdin status
+		int     $DOS_INT
+		mov     %al, hasKey     #0 iff no key pressed
+		pop     %ax
+		ret
+
+	
+
+#Read next char from stdin into inChar.  Quit if ^C
+getchar:
+		push	%ax
+		mov     $0x08,%ah       #specify fn: read without echo into al
+		int     $DOS_INT        #read stdin into %al
+		mov     %al,inChar      #mov char read to inChar
+		pop	%ax
+		ret
+
+#Write inChar to console	
+putchar:
+		push	%ax
+		movb    $02,%ah         #specify fn: output dl to stdout
+		movb    inChar,%dl      #char to output
+		int     $DOS_INT        #output inChar
+		pop	%ax
+		ret
+
+exit:
+		mov	$0x4c,%ah      	#specify fn: program exit
+		mov	$0x0,%al        #setup exit status
+		int	$DOS_INT        #exit program
+	
+	
+
+#spin loop for delay time proportional to value in DELAY_HI_DELAY_LO
+delay:		push	%ax
+		push	%bx
+		push	%cx
+		mov	$DELAY_HI, %bx
+delay1:		mov     $DELAY_LO, %cx
+delay2:		mov     $0x0f0a0, %ax
+	        imul    %cl
+	        dec     %cx
+	        jnz     delay2
+	        dec     %bx
+	        jnz	delay1
+	        pop	%cx
+		pop	%bx
+		pop	%ax
+		ret
+
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ dosbox &
+[1] 6121
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ DOSBox version 0.74-2
+Copyright 2002-2018 DOSBox Team, published under GNU GPL.
+---
+CONFIG:Loading primary settings from config file /home/epotapo1/.dosbox/dosbox-0.74-2.conf
+MIXER:Got different values from SDL: freq 44100, blocksize 512
+ALSA:Can't subscribe to MIDI port (65:0) nor (17:0)
+MIDI:Opened device:none
+
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ emacs key-int.s 
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ ls
+block.com  block.lst  block.s  key-int.s  Makefile  poll.com  poll.lst	poll.s
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ make key-int.com
+as --32 -a=key-int.lst key-int.s -o key-int.o
+objcopy -O binary key-int.o key-int.bin
+rm key-int.o
+dd if=key-int.bin of=key-int.com bs=256 skip=1
+0+1 records in
+0+1 records out
+209 bytes copied, 0.00169864 s, 123 kB/s
+rm key-int.bin
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ emacs key-int.s
+[1]+  Done                    dosbox
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ emacs poll.
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ emacs poll.s
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ emacs poll.s[Kkey-int.s
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12/exercises$ cd ..
+epotapo1@g7-29:/import/linux/home1/epotapo1/i220a/submit/lab12$ exit
+
+Script done on 2021-12-02 13:00:45-05:00 [COMMAND_EXIT_CODE="0"]

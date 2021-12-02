@@ -33,6 +33,9 @@ main2:
 	        xor	%al, %al
 		mov	%al, hasKey     #reset hasKey flag
 		call	getchar         #read new input key
+		mov	inChar, %al
+		cmp	$QUIT, %al
+		jz	main3
 main4:	
 	        call    putchar         #output inChar to console
 		call    delay           #delay for time proportional to DELAY
