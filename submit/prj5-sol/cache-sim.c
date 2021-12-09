@@ -28,7 +28,6 @@ new_cache_sim(const CacheParams *params)
     for (int j = 0; j < numLines; j++) {
       // each line has [valid, tag, accessOrder], so size of 3
       cache[i][j] = mallocChk(3 * sizeof(unsigned int));
-      cache[i][j][2] = numLines;
     }
   }
   cache[0][0][0] = setBits;
@@ -89,9 +88,13 @@ cache_sim_result(CacheSim *cache, MemAddr addr)
     // valid is set and tag matches tag from address, meaning HIT
     if ((set[i][0] == 1) && (set[i][1] == tag)) {
       // update access order of lines
-      for (int l = 0; l < numLines; l++) {
-	if (i == l) set[l][2] = numLines;
-	else set[l][2]--;
+      if (set[i][2] != numLines*2) {
+	for (int l = 0; l < numLines; l++) {
+	  if (i == l) set[l][2] = numLines*2;
+	  else {
+	    if (--set[l][2] < 0) set[l][2] = 0;
+	  }
+	}
       }
       return r;
     }
@@ -105,9 +108,13 @@ cache_sim_result(CacheSim *cache, MemAddr addr)
     set[emptyLine][0] = 1;
     set[emptyLine][1] = tag;
     // update access order
-    for (int l = 0; l < numLines; l++) {
-      if (l == emptyLine) set[emptyLine][2] = numLines;
-      else set[l][2]--;
+    if (set[emptyLine][2] != numLines*2) {
+      for (int l = 0; l < numLines; l++) {
+	if (l == emptyLine) set[emptyLine][2] = numLines*2;
+	else {
+	  if (--set[l][2] < 0) set[l][2] = 0;
+	}
+      }
     }
     CacheResult result = { 1, 0 };
     return result;
@@ -117,19 +124,25 @@ cache_sim_result(CacheSim *cache, MemAddr addr)
     unsigned int lineToReplace = 0;
     // least recently used
     if (replacement == 0) {
-      unsigned int lru = numLines + 1;
-      unsigned int lruLine = -1;
+      unsigned int lru = numLines*2 + 1;
+      unsigned int lruLine = 0;
       for (int l = 0; l < numLines; l++) {
-	if (set[l][2] < lru) lruLine = l;
+	if (set[l][2] < lru) {
+	  lruLine = l;
+	  lru = set[l][2];
+	}
       }
       lineToReplace = lruLine;
     }
     // most recently used
     else if (replacement == 1) {
-      unsigned int mru = -1;
-      unsigned int mruLine = -1;
+      unsigned int mru = 0;
+      unsigned int mruLine = 0;
       for (int l = 0; l < numLines; l++) {
-	if (set[l][2] > mru) mruLine = l;
+	if (set[l][2] > mru){
+	  mruLine = l;
+	  mru = set[l][2];
+	}
       }
       lineToReplace = mruLine;
     }
@@ -138,13 +151,18 @@ cache_sim_result(CacheSim *cache, MemAddr addr)
       lineToReplace = rand() % numLines;
     }
     // update access order
-    for (int l = 0; l < numLines; l++) {
-      if (l == lineToReplace) set[lineToReplace][2] = numLines;
-      else set[l][2]--;
+    if (set[lineToReplace][2] != numLines*2) {
+      for (int l = 0; l < numLines; l++) {
+	if (l == lineToReplace) set[lineToReplace][2] = numLines*2;
+	else {
+	  if (--set[l][2] < 0) set[l][2] = 0;
+	}
+      }
     }
     // replace specified line in set
     unsigned int replacedTag = set[lineToReplace][1];
     MemAddr replacedAddr = ((replacedTag<<setBits) | setNum)<<lineBits;
+    set[lineToReplace][1] = tag;
     CacheResult result = { 2, replacedAddr };
     return result;
   }
